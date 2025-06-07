@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.markdown-preview {
+  padding: 16px;
+}
+
+.markdown-preview h1 {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview h2 {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview code {
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: 0.2em 0.4em;
+}
+
+.markdown-preview pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
+
+.markdown-preview pre code {
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.ant-tabs-content {
+  height: 100%;
+}
+
+.ant-tabs-tabpane {
+  padding: 16px 0;
+}
+
+/* Основные стили для скроллбаров */
+::-webkit-scrollbar {
+  width: 12px; /* ширина вертикального скроллбара */
+  height: 12px; /* высота горизонтального скроллбара */
+}
+
+/* Фон скроллбара */
+::-webkit-scrollbar-track {
+  background: #1a1a1a; /* темный фон трека */
+  border-radius: 6px;
+}
+
+/* Ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background: #3d3d3d; /* основной цвет ползунка */
+  border-radius: 6px;
+  border: 2px solid #1a1a1a; /* граница, совпадающая с фоном трека */
+}
+
+/* Ползунок при наведении */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* более светлый оттенок при наведении */
+}
+
+/* Ползунок при активном взаимодействии */
+::-webkit-scrollbar-thumb:active {
+  background: #666; /* еще более светлый оттенок при клике */
+}
+
+/* Угол между вертикальным и горизонтальным скроллбаром */
+::-webkit-scrollbar-corner {
+  background: #1a1a1a; /* темный фон угла */
+}

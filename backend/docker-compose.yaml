@@ -1,0 +1,32 @@
+services:
+  backup:
+    build:
+      context: .
+      dockerfile: backup_service/Dockerfile
+    command: uvicorn app.main:app --reload 
+    volumes:
+      - ./:/app
+    environment:
+      - PGPASSWORD=${MAIN_POSTGRESS_PWD}
+      - MAIN_POSTGRESS_PWD=${MAIN_POSTGRESS_PWD}
+      - MAIN_POSTGRESS_HOST=${MAIN_POSTGRESS_HOST}
+      - MAIN_POSTGRESS_PORT=${MAIN_POSTGRESS_PORT}
+      - MAIN_POSTGRESS_DB=${MAIN_POSTGRESS_DB}
+      - MAIN_POSTGRESS_USER=${MAIN_POSTGRESS_USER}
+    depends_on:
+      - postgres
+    networks:
+      - web
+  
+  postgres:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=${MAIN_POSTGRESS_PWD}
+    command: ["postgres", "-c", "log_statement=all"]
+    ports:
+      - 5431:5432
+      - 5432:5432
+    networks:
+      - web
