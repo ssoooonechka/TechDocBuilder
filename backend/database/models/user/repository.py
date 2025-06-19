@@ -9,7 +9,7 @@ from models.core.user import (
     UserLogin
 )
 from utils.base_repository import BaseRepository
-from utils.hash_manager import encrypt
+from utils.hash_manager import encrypt, get_password_hash, check_password
 
 
 class UserRepository(BaseRepository[User, UserRead]):
@@ -26,10 +26,8 @@ class UserRepository(BaseRepository[User, UserRead]):
 
     async def authenticate_user(self, credentials: UserLogin) -> Optional[UserRead]:
         user = await self.get_by_username(credentials.username)
-        hashed_password = await encrypt(
-            input_string=credentials.password
-        )
-        if (not user) or (hashed_password != user.password):
+
+        if (not user) or not await check_password(password=credentials.password, hashed_password=user.password):
             return None
         return UserRead.model_validate(user)
 

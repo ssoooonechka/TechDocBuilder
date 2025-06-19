@@ -3,7 +3,7 @@ from typing import Optional
 from database.core import get_session
 from database.models.user.repository import UserRepository
 from models.core.user import UserCreate, UserRead, UserLogin, UserUpdate
-from utils.hash_manager import encrypt
+from utils.hash_manager import encrypt, get_password_hash
 
 
 class UserService:
@@ -12,8 +12,8 @@ class UserService:
         async with get_session() as session:
             repo = UserRepository(session=session)
 
-            user_data.password = await encrypt(
-                input_string=user_data.password
+            user_data.password = await get_password_hash(
+                password=user_data.password
             )
 
             new_user = await repo.create_user(
